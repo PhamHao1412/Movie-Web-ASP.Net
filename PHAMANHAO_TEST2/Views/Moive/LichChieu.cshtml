@@ -1,0 +1,71 @@
+﻿
+@model IEnumerable<PHAMANHAO_TEST2.Models.LichChieu>
+@{
+    ViewBag.Title = "PhimDangChieu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lịch chiếu</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.malich)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maphim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soluong)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.malich)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maphim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soluong)
+            </td>
+            @if (item.soluong <= 0)
+            {
+                <td>
+                    Hết vé
+                </td>
+            }
+            else
+            {
+        <td>
+            <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioPhim",
+                        new { @malich = item.malich, @strURL = Request.Url.ToString() }) " ,>Đặt vé</a>
+
+        </td>
+            }
+
+        </tr>
+    }
+
+</table>
